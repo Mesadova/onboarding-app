@@ -4,6 +4,8 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 
 function App() {
   const [step, setStep] = useState(0)
+  const [forward, setForward] = useState(true)
+
   const tutorialData = [
     {
       title: 'Dedicate many hours',
@@ -28,11 +30,13 @@ function App() {
   const nextStep = () => {
     const addStep = step + 1
     setStep(addStep)
+    setForward(true)
   }
 
   const prevStep = () => {
     const subStep = step -1
     setStep(subStep)
+    setForward(false)
   }
 
   const containerStyle = {
@@ -44,7 +48,7 @@ function App() {
 
   return (
     <div className='container' style={containerStyle}>
-      <AppCard tutorialData={tutorialData} step={step} nextStep={nextStep} prevStep={prevStep}/>
+      <AppCard tutorialData={tutorialData} step={step} forward={forward} nextStep={nextStep} prevStep={prevStep}/>
     </div> 
   )
 }
