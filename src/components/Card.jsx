@@ -65,6 +65,7 @@ const AppCard = (props) => {
     }
     const buttonStyle = {
         borderRadius: '100px',
+        borderColor: 'white',
         width: '55px',
         height: '55px',
         display: 'flex',
@@ -75,28 +76,14 @@ const AppCard = (props) => {
     const cardFooterStyle = {
         display: 'flex',
         justifyContent: 'space-between',
-        backgroundColor: 'lightblue',
     }
     const arrowsStyle = {
-        fontSize: '55px'
-    }
-    const iconsStyle = {
         fontSize: '55px',
-        display: 'inline-block',
-        gap: '0px',
-        margin: '0px',
-        padding: '0%',
-        border: 'solid',
-        borderColor: 'red',
-        alignItems: 'start',
-        justifyContent: 'start',
-        whiteSpace: 'no-wrap'
     }
     const buttonContainerStyle = {
         display: 'flex',
         wrap: 'no-wrap',
         direction: 'rtl',
-        border: 'solid',
         borderColor: 'white',
         backgroundColor: 'white',
         gap: '10px'
