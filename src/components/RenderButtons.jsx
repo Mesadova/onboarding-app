@@ -26,7 +26,6 @@ const buttonContainerStyle = {
 
 const RenderButtons = (props) => {
     const renderButtons = () => {
-        console.log(props.step, props.nextStep, props.prevStep)
         switch(props.step) {
             case 0:
                 return (<div style={buttonContainerStyle}>

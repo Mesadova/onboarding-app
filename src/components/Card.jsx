@@ -1,6 +1,4 @@
-import { Button, Card, CardBody } from "react-bootstrap"
-import styled from 'styled-components'
-import { motion } from "framer-motion"
+import { Card, CardBody } from "react-bootstrap"
 import Indicator from "./Indicator"
 import RenderButtons from "./RenderButtons"
 
@@ -69,8 +67,14 @@ const AppCard = (props) => {
                         return <Card.Text key={key} style={cardTextStyle}>{value}</Card.Text>
                     } else { null }})}
                 <div style={cardFooterStyle}>
-                    <Indicator tutorialData={props.tutorialData} step={props.step} forward={props.forward} nextStep={props.nextStep} prevStep={props.prevStep}  />
-                    <RenderButtons step={props.step} forward={props.forward} nextStep={props.nextStep} prevStep={props.prevStep} />
+                    <Indicator 
+                        tutorialData={props.tutorialData} 
+                        step={props.step} forward={props.forward} 
+                        nextStep={props.nextStep} prevStep={props.prevStep}  />
+                    <RenderButtons 
+                        step={props.step} forward={props.forward} 
+                        nextStep={props.nextStep} prevStep={props.prevStep} 
+                        />
                 </div>
             </CardBody>
         </Card>
