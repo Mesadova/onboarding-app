@@ -52,10 +52,6 @@ const AppCard = (props) => {
         display: 'flex',
         justifyContent: 'space-between',
     }
-
-    
-
-    
     
     return(
         <Card style={cardStyle}>
@@ -73,7 +69,7 @@ const AppCard = (props) => {
                         return <Card.Text key={key} style={cardTextStyle}>{value}</Card.Text>
                     } else { null }})}
                 <div style={cardFooterStyle}>
-                    <Indicator step={props.step} forward={props.forward} nextStep={props.nextStep} prevStep={props.prevStep}  />
+                    <Indicator tutorialData={props.tutorialData} step={props.step} forward={props.forward} nextStep={props.nextStep} prevStep={props.prevStep}  />
                     <RenderButtons step={props.step} forward={props.forward} nextStep={props.nextStep} prevStep={props.prevStep} />
                 </div>
             </CardBody>

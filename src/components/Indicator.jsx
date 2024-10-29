@@ -6,6 +6,19 @@ const StepContainer = styled.div`
     display: flex;
     position: relative;
 `
+
+const StepWrapper = styled.div`
+    display: flex;
+    flex-direction: row;
+    border: solid;
+    border-color: blue;
+    background-color: white;
+    gap: 12px;
+    align-items: center;
+    align-content: center;
+    position: relative;  
+`
+
 const StepProgress = styled.div`
     position: absolute;
     background: #4a154b;
@@ -15,28 +28,52 @@ const StepProgress = styled.div`
     bottom: -4.8px;
 `
 
-const StepWrapper = styled.div`
-    display: flex;
-    flex-direction: row;
-    border: solid;
-    border-color: white;
-    background-color: white;
-    gap: 12px;
-    align-items: center;
-    align-content: center;
-    position: relative;  
-`
-
 const StepStyle = styled.button`
     width: 10px;
     height: 10px;
     border-radius: 50%;
     background-color: #A9A9A9;
     transition: 1.4s ease;
+
+    &.something {
+        background: #000000;
+        width: 30px;
+        border-radius: 20px;
+    }
 `
 
 const Indicator = (props) => {
+    let buttonStep = 0
 
+    const keyButton = () => {
+        buttonStep ++
+        console.log(buttonStep)
+        console.log(props.step)
+        return buttonStep
+    }
+
+    const handleClick = (event) => {
+        event.preventDefault()
+        console.log('click')
+    }
+
+    return(
+        <StepContainer>
+            <StepWrapper>
+                {props.tutorialData.map((element) => {
+                    element ? (
+                        <StepStyle key={keyButton()} onClick={handleClick} />
+                    ) : (
+                        <StepStyle key={keyButton()} onClick={handleClick} />
+                    )
+                })}
+                {console.log('hippie')}
+            </StepWrapper>
+        </StepContainer>
+
+    )
+
+    /**
     return (
         <>
         {props.forward ? (
@@ -141,7 +178,7 @@ const Indicator = (props) => {
             )
         )}
         </>
-    )
+    ) **/
 }
 
 export default Indicator
