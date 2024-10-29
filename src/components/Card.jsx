@@ -2,6 +2,7 @@ import { Button, Card, CardBody } from "react-bootstrap"
 import styled from 'styled-components'
 import { motion } from "framer-motion"
 import Indicator from "./Indicator"
+import RenderButtons from "./RenderButtons"
 
 const AppCard = (props) => {
     const currentCardData = props.tutorialData[props.step]
@@ -46,6 +47,15 @@ const AppCard = (props) => {
         paddingBottom: '10px',
         paddingLeft: '10px'
     }
+
+    const cardFooterStyle = {
+        display: 'flex',
+        justifyContent: 'space-between',
+    }
+
+    
+
+    
     
     return(
         <Card style={cardStyle}>
@@ -56,13 +66,16 @@ const AppCard = (props) => {
                     )
                 } else { null }})}
             <CardBody>
-            {Object.entries(currentCardData).map(([key, value]) => {
-                if (key === "title") {
-                    return <Card.Title key={key} style={cardTitleStyle}><b>{value}</b></Card.Title>
-                } else if (key === "description") {
-                    return <Card.Text key={key} style={cardTextStyle}>{value}</Card.Text>
-                } else { null }})}
-            <Indicator step={props.step} forward={props.forward} nextStep={props.nextStep} prevStep={props.prevStep}  />
+                {Object.entries(currentCardData).map(([key, value]) => {
+                    if (key === "title") {
+                        return <Card.Title key={key} style={cardTitleStyle}><b>{value}</b></Card.Title>
+                    } else if (key === "description") {
+                        return <Card.Text key={key} style={cardTextStyle}>{value}</Card.Text>
+                    } else { null }})}
+                <div style={cardFooterStyle}>
+                    <Indicator step={props.step} forward={props.forward} nextStep={props.nextStep} prevStep={props.prevStep}  />
+                    <RenderButtons step={props.step} forward={props.forward} nextStep={props.nextStep} prevStep={props.prevStep} />
+                </div>
             </CardBody>
         </Card>
     )

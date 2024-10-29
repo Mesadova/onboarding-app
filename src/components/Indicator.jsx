@@ -2,8 +2,6 @@ import { Button, Card, CardBody } from "react-bootstrap"
 import styled from 'styled-components'
 import { motion } from "framer-motion"
 
-const Indicator = (props) => {
-
 const StepContainer = styled.div`
     display: flex;
     position: relative;
@@ -29,7 +27,7 @@ const StepWrapper = styled.div`
     position: relative;  
 `
 
-const StepStyle = styled.div`
+const StepStyle = styled.button`
     width: 10px;
     height: 10px;
     border-radius: 50%;
@@ -37,193 +35,113 @@ const StepStyle = styled.div`
     transition: 1.4s ease;
 `
 
-const cardFooterStyle = {
-    display: 'flex',
-    justifyContent: 'space-between',
-}
+const Indicator = (props) => {
 
-const buttonStyle = {
-    borderRadius: '100px',
-    borderColor: 'white',
-    width: '55px',
-    height: '55px',
-    display: 'flex',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    justifyContent: 'center',
-}
-
-const arrowsStyle = {
-    fontSize: '55px',
-}
-
-const buttonContainerStyle = {
-    display: 'flex',
-    wrap: 'no-wrap',
-    direction: 'rtl',
-    borderColor: 'white',
-    backgroundColor: 'white',
-    gap: '10px'
-}
-
-return (
-    <>
-    {props.forward ? (
-        props.step === 0 ? (
-            <div style={cardFooterStyle}>
-                <StepContainer>
-                    <StepWrapper>
+    return (
+        <>
+        {props.forward ? (
+            props.step === 0 ? (
+                    <StepContainer>
+                        <StepWrapper onClick={props.nextStep} >
+                            <motion.div
+                                initial={{x: 10}}
+                                animate={{x: 11}}
+                                transition={{duration: 0}}
+                            >
+                                <StepProgress></StepProgress>
+                            </motion.div>
+                            <StepStyle></StepStyle>
+                            <StepStyle></StepStyle>
+                            <StepStyle onClick={props.nextStep}></StepStyle>
+                            <StepStyle onClick={props.nextStep}></StepStyle>
+                        </StepWrapper>
+                    </StepContainer>
+            ) : props.step === 1 ? (
+                    <StepContainer>
+                        <StepWrapper>
                         <motion.div
-                            initial={{x: 10}}
-                            animate={{x: 11}}
-                            transition={{duration: 0}}
-                        >
-                            <StepProgress></StepProgress>
-                        </motion.div>
-                        <StepStyle></StepStyle>
-                        <StepStyle></StepStyle>
-                        <StepStyle></StepStyle>
-                        <StepStyle></StepStyle>
-                    </StepWrapper>
-                </StepContainer>
-                <div style={buttonContainerStyle}>
-                    <Button onClick={props.nextStep} style={buttonStyle} >
-                        <i className="bi bi-arrow-right-circle-fill text-dark" style={arrowsStyle}></i>
-                    </Button>
-                </div>
-            </div>
-        ) : props.step === 1 ? (
-            <div style={cardFooterStyle}>
-                <StepContainer>
-                    <StepWrapper>
-                    <motion.div
-                            initial={{x: 11}}
-                            animate={{x: 33.3}}
-                            transition={{duration: 0.4}}
-                        >
-                            <StepProgress></StepProgress>
-                        </motion.div>
-                        <StepStyle></StepStyle>
-                        <StepStyle></StepStyle>
-                        <StepStyle></StepStyle>
-                        <StepStyle></StepStyle>
-                    </StepWrapper>
-                </StepContainer>
-                <div style={buttonContainerStyle}>
-                    <Button onClick={props.nextStep} style={buttonStyle} >
-                        <i className="bi bi-arrow-right-circle-fill text-dark" style={arrowsStyle}></i>
-                    </Button>
-                    <Button onClick={props.prevStep} style={buttonStyle}>
-                        <i className="bi bi-arrow-left-circle text-dark" style={arrowsStyle}></i>
-                    </Button>
-                </div>
-            </div>
+                                initial={{x: 11}}
+                                animate={{x: 33.3}}
+                                transition={{duration: 0.4}}
+                            >
+                                <StepProgress></StepProgress>
+                            </motion.div>
+                            <StepStyle></StepStyle>
+                            <StepStyle></StepStyle>
+                            <StepStyle></StepStyle>
+                            <StepStyle></StepStyle>
+                        </StepWrapper>
+                    </StepContainer>
+            ) : (
+                    <StepContainer>
+                        <StepWrapper>
+                            <motion.div
+                                initial={{x: 33.3}}
+                                animate={{x: 56.4}}
+                                transition={{duration: 0.4}}
+                            >
+                                <StepProgress></StepProgress>
+                            </motion.div>
+                            <StepStyle></StepStyle>
+                            <StepStyle></StepStyle>
+                            <StepStyle></StepStyle>
+                            <StepStyle></StepStyle>
+                        </StepWrapper>
+                    </StepContainer>
+            )
         ) : (
-            <div style={cardFooterStyle}>
-                <StepContainer>
-                    <StepWrapper>
+            props.step === 0 ? (
+                    <StepContainer>
+                        <StepWrapper>
+                            <motion.div
+                                initial={{x: 33.3}}
+                                animate={{x: 11}}
+                                transition={{duration: 0.4}}
+                            >
+                                <StepProgress></StepProgress>
+                            </motion.div>
+                            <StepStyle></StepStyle>
+                            <StepStyle></StepStyle>
+                            <StepStyle></StepStyle>
+                            <StepStyle></StepStyle>
+                        </StepWrapper>
+                    </StepContainer>
+            ) : props.step === 1 ? (
+                    <StepContainer>
+                        <StepWrapper>
                         <motion.div
-                            initial={{x: 33.3}}
-                            animate={{x: 56.4}}
-                            transition={{duration: 0.4}}
-                        >
-                            <StepProgress></StepProgress>
-                        </motion.div>
-                        <StepStyle></StepStyle>
-                        <StepStyle></StepStyle>
-                        <StepStyle></StepStyle>
-                        <StepStyle></StepStyle>
-                    </StepWrapper>
-                </StepContainer>
-                <div style={buttonContainerStyle}>
-                    <Button onClick={props.prevStep} style={buttonStyle}>
-                        <i className="bi bi-arrow-left-circle text-dark" style={arrowsStyle}></i>
-                    </Button>
-                </div>
-            </div>
-        )
-    ) : (
-        props.step === 0 ? (
-            <div style={cardFooterStyle}>
-                <StepContainer>
-                    <StepWrapper>
-                        <motion.div
-                            initial={{x: 33.3}}
-                            animate={{x: 11}}
-                            transition={{duration: 0.4}}
-                        >
-                            <StepProgress></StepProgress>
-                        </motion.div>
-                        <StepStyle></StepStyle>
-                        <StepStyle></StepStyle>
-                        <StepStyle></StepStyle>
-                        <StepStyle></StepStyle>
-                        
-                    </StepWrapper>
-                </StepContainer>
-                <div style={buttonContainerStyle}>
-                    <Button onClick={props.nextStep} style={buttonStyle} >
-                        <i className="bi bi-arrow-right-circle-fill text-dark" style={arrowsStyle}></i>
-                    </Button>
-                </div>
-            </div>)
-        : props.step === 1 ? (
-            <div style={cardFooterStyle}>
-                <StepContainer>
-                    <StepWrapper>
-                    <motion.div
-                            initial={{x: 56.4}}
-                            animate={{x: 33.3}}
-                            transition={{duration: 0.4}}
-                        >
-                            <StepProgress></StepProgress>
-                        </motion.div>
-                        <StepStyle></StepStyle>
-                        <StepStyle></StepStyle>
-                        <StepStyle></StepStyle>
-                        <StepStyle></StepStyle>
-                    </StepWrapper>
-                </StepContainer>
-                <div style={buttonContainerStyle}>
-                    <Button onClick={props.nextStep} style={buttonStyle} >
-                        <i className="bi bi-arrow-right-circle-fill text-dark" style={arrowsStyle}></i>
-                    </Button>
-                    <Button onClick={props.prevStep} style={buttonStyle}>
-                        <i className="bi bi-arrow-left-circle text-dark" style={arrowsStyle}></i>
-                    </Button>
-                </div>
-            </div>
-        ) : (
-            <div style={cardFooterStyle}>
-                <StepContainer>
-                    <StepWrapper>
-                        <motion.div
-                            initial={{x: 56.4}}
-                            animate={{x: 33.3}}
-                            transition={{duration: 0.4}}
-                        >
-                            <StepProgress></StepProgress>
-                        </motion.div>
-                        <StepStyle></StepStyle>
-                        <StepStyle></StepStyle>
-                        <StepStyle></StepStyle>
-                        <StepStyle></StepStyle>
-                    </StepWrapper>
-                </StepContainer>
-                <div style={buttonContainerStyle}>
-                    <Button onClick={props.prevStep} style={buttonStyle}>
-                        <i className="bi bi-arrow-left-circle text-dark" style={arrowsStyle}></i>
-                    </Button>
-                </div>
-            </div>
-        )
-    )}
-    </>
-)
-
-
-
-
+                                initial={{x: 56.4}}
+                                animate={{x: 33.3}}
+                                transition={{duration: 0.4}}
+                            >
+                                <StepProgress></StepProgress>
+                            </motion.div>
+                            <StepStyle></StepStyle>
+                            <StepStyle></StepStyle>
+                            <StepStyle></StepStyle>
+                            <StepStyle></StepStyle>
+                        </StepWrapper>
+                    </StepContainer>
+            ) : (
+                    <StepContainer>
+                        <StepWrapper>
+                            <motion.div
+                                initial={{x: 56.4}}
+                                animate={{x: 33.3}}
+                                transition={{duration: 0.4}}
+                            >
+                                <StepProgress></StepProgress>
+                            </motion.div>
+                            <StepStyle></StepStyle>
+                            <StepStyle></StepStyle>
+                            <StepStyle></StepStyle>
+                            <StepStyle></StepStyle>
+                        </StepWrapper>
+                    </StepContainer>
+            )
+        )}
+        </>
+    )
 }
 
 export default Indicator
