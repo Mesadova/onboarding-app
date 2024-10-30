@@ -24,9 +24,10 @@ const buttonContainerStyle = {
     gap: '10px',
 };
 
-const RenderButtons = ({ tutorialData, step, nextStep, prevStep }) => {
+const RenderButtons = ({ tutorialData, nextStep, prevStep, index }) => {
+
     const renderButtons = () => {
-        if (step === 0) {
+        if (index === 0) {
             return (
                 <div style={buttonContainerStyle}>
                     <Button onClick={nextStep} style={buttonStyle}>
@@ -35,7 +36,7 @@ const RenderButtons = ({ tutorialData, step, nextStep, prevStep }) => {
                 </div>
             )
 
-        } else if (step < tutorialData.length - 1) {
+        } else if (index < tutorialData.length - 1) {
             return (
                 <div style={buttonContainerStyle}>
                     <Button onClick={nextStep} style={buttonStyle}>

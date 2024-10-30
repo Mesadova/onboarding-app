@@ -1,12 +1,24 @@
 import { useState } from 'react'
 import AppCard from './components/Card'
 import "bootstrap-icons/font/bootstrap-icons.css";
+import styled from 'styled-components'
+
+const Container = styled.div`
+display: flex;
+justify-content: center;
+height: 100vh;
+overflow: hidden;
+margin-top: 20px;
+`
+
+const CardContainer = styled.div`
+position: relative;
+width: 36rem;
+height: 22rem;
+`
 
 function App() {
   const [step, setStep] = useState(0)
-  const [forward, setForward] = useState(true)
-  
-  const [isVisible, setIsVisible] = useState(true)
 
   const tutorialData = [
     {
@@ -23,36 +35,42 @@ function App() {
     },
     {
       title: 'Try to rest',
-      description: "Good rest and disconnecting are vital. This way, you'll reduce stress and anxiety. It will improve your concentration and solidify your learning.   \n ",
+      description: "Good rest and disconnecting are vital. This way, you'll reduce stress and anxiety. It will improve your concentration and solidify your learning.\n ",
       bgColor: '#F4D06F',
       image: 'src/assets/meditation.svg',
+    },
+    {
+      title: 'Break Down Large Problems',
+      description: "Instead of trying to tackle a big project all at once, break it into smaller, manageable tasks. This will make each part feel more achievable.\n ",
+      bgColor: '#D28EE8',
+      image: 'src/assets/projects.svg',
     }
   ]
 
   const nextStep = () => {
     const addStep = step + 1
     setStep(addStep)
-    setForward(true)
   }
 
   const prevStep = () => {
     const subStep = step -1
     setStep(subStep)
-    setForward(false)
-  }
-
-  const containerStyle = {
-    display: 'flex',
-    border: 'solid',
-    borderColor: 'red',
-    justifyContent: 'center',
   }
 
   return (
-    <div className='container' style={containerStyle}>
-      <AppCard tutorialData={tutorialData} step={step} 
-      forward={forward} nextStep={nextStep} prevStep={prevStep} isVisible={isVisible}/>
-    </div> 
+    <Container>
+      <CardContainer>
+        {tutorialData.map((person, index) => {
+          let position = index > step ? "nextCard" : index === step ? 
+          "activeCard" : "prevCard";
+          return <AppCard key={index} name={person.name} index={index} position={position}
+                image={person.image} description={person.description} title={person.title} bgColor={person.bgColor}
+                tutorialData={tutorialData} step={step}
+                nextStep={nextStep} prevStep={prevStep} 
+                setStep={setStep}/>
+        })}
+      </CardContainer>
+    </Container>
   )
 }
 

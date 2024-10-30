@@ -1,17 +1,41 @@
 import { Card, CardBody } from "react-bootstrap"
 import Indicator from "./Indicator"
 import RenderButtons from "./RenderButtons"
-import { motion, AnimatePresence } from "framer-motion"
-import { useState } from 'react'
+import styled from 'styled-components'
+
+const CardStyled = styled(Card)`
+        position: absolute;
+        width: 25rem;
+        border-radius: 50px;
+        overflow: hidden;
+        min-height: 600px;
+        max-height: 800px;
+        transition: 0.8s ease-in-out;
+
+        &.prevCard {
+          left: -100%;
+          opacity: 0;
+          transform: translateX(-200%)
+          z-index: -1;
+        }
+
+        &.activeCard {
+          left: 50%;
+          transform: translateX(-50%);
+        }
+
+        &.nextCard {
+          left: 100%;
+          transform: translateX(100%);
+          opacity: 0;
+          z-index: -1;
+        }
+    `;
 
 const AppCard = (props) => {
-    const currentCardData = props.tutorialData[props.step]
-    const backgroundColor = currentCardData.bgColor
-    
-    
 
     const cardImgStyle = {
-        backgroundColor: backgroundColor,
+        backgroundColor: props.bgColor,
         paddingTop: '110px',
         paddingBottom: '110px',
         paddingLeft: '10px',
@@ -19,16 +43,6 @@ const AppCard = (props) => {
         minHeight: '420px',
         maxHeight: '420px',
         overflow: 'hidden',
-    }
-
-    const cardStyle = {
-        marginTop: '30px',
-        marginBottom: '30px',
-        width: '25rem',
-        borderRadius: '50px',
-        overflow: 'hidden',
-        minHeight: '600px',
-        maxHeight: '800px'
     }
 
     const cardTextStyle = {
@@ -42,6 +56,7 @@ const AppCard = (props) => {
         color: 'DarkSlateGray',
         whiteSpace: 'pre-wrap'
     }
+
     const cardTitleStyle = {
         fontFamily: 'Poppins',
         fontSize: '18px',
@@ -54,51 +69,28 @@ const AppCard = (props) => {
         display: 'flex',
         justifyContent: 'space-between',
     }
-    
-    return(
-    <AnimatePresence mode="wait">
-        {props.isVisible && (
-            <motion.div
-            key={props.step}
-            initial={{ x: 1050, opacity: 0.2 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{
-                duration: 0.4}}
-            exit={{ x: -1050, opacity: 0.2 }}
-            >
-            
-            <Card style={cardStyle}>
-                {Object.entries(currentCardData).map(([key, value]) => {
-                    if (key === "image") {
-                        return (
-                            <Card.Img key={key} variant="top" src={value} style={cardImgStyle}/>
-                        )
-                    } else { null }})}
+
+    return (
+            <CardStyled className={props.position} >
+                <Card.Img variant="top" src={props.image} style={cardImgStyle} />
                 <CardBody>
-                    {Object.entries(currentCardData).map(([key, value]) => {
-                        if (key === "title") {
-                            return <Card.Title key={key} style={cardTitleStyle}><b>{value}</b></Card.Title>
-                        } else if (key === "description") {
-                            return <Card.Text key={key} style={cardTextStyle}>{value}</Card.Text>
-                        } else { null }})}
+                    <Card.Title style={cardTitleStyle}><b>{props.title}</b></Card.Title>
+                    <Card.Text style={cardTextStyle}>{props.description}</Card.Text>
                     <div style={cardFooterStyle}>
-                        <Indicator 
-                            tutorialData={props.tutorialData} 
-                            step={props.step} forward={props.forward} 
-                            nextStep={props.nextStep} prevStep={props.prevStep}  />
-                        <RenderButtons 
-                            tutorialData={props.tutorialData} 
-                            step={props.step} forward={props.forward} 
-                            nextStep={props.nextStep} prevStep={props.prevStep} 
-                            />
+                        <Indicator
+                            tutorialData={props.tutorialData}
+                            step={props.step} forward={props.forward}
+                            setStep={props.setStep} setStep={props.setStep}
+                            nextStep={props.nextStep} prevStep={props.prevStep} />
+                        <RenderButtons
+                            tutorialData={props.tutorialData} index={props.index}
+                            step={props.step} forward={props.forward}
+                            nextStep={props.nextStep} prevStep={props.prevStep}
+                        />
                     </div>
                 </CardBody>
-            </Card>
-        </motion.div>
-        )}
-    </AnimatePresence>
+            </CardStyled>
     )
 }
 
-
-export default AppCard
+export default AppCard;
