@@ -5,6 +5,8 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 function App() {
   const [step, setStep] = useState(0)
   const [forward, setForward] = useState(true)
+  
+  const [isVisible, setIsVisible] = useState(true)
 
   const tutorialData = [
     {
@@ -48,7 +50,8 @@ function App() {
 
   return (
     <div className='container' style={containerStyle}>
-      <AppCard tutorialData={tutorialData} step={step} forward={forward} nextStep={nextStep} prevStep={prevStep}/>
+      <AppCard tutorialData={tutorialData} step={step} 
+      forward={forward} nextStep={nextStep} prevStep={prevStep} isVisible={isVisible}/>
     </div> 
   )
 }

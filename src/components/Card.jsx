@@ -1,10 +1,14 @@
 import { Card, CardBody } from "react-bootstrap"
 import Indicator from "./Indicator"
 import RenderButtons from "./RenderButtons"
+import { motion, AnimatePresence } from "framer-motion"
+import { useState } from 'react'
 
 const AppCard = (props) => {
     const currentCardData = props.tutorialData[props.step]
     const backgroundColor = currentCardData.bgColor
+    
+    
 
     const cardImgStyle = {
         backgroundColor: backgroundColor,
@@ -52,32 +56,47 @@ const AppCard = (props) => {
     }
     
     return(
-        <Card style={cardStyle}>
-            {Object.entries(currentCardData).map(([key, value]) => {
-                if (key === "image") {
-                    return (
-                        <Card.Img key={key} variant="top" src={value} style={cardImgStyle}/>
-                    )
-                } else { null }})}
-            <CardBody>
+    <AnimatePresence mode="wait">
+        {props.isVisible && (
+            <motion.div
+            key={props.step}
+            initial={{ x: 1050, opacity: 0.2 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{
+                duration: 0.4}}
+            exit={{ x: -1050, opacity: 0.2 }}
+            >
+            
+            <Card style={cardStyle}>
                 {Object.entries(currentCardData).map(([key, value]) => {
-                    if (key === "title") {
-                        return <Card.Title key={key} style={cardTitleStyle}><b>{value}</b></Card.Title>
-                    } else if (key === "description") {
-                        return <Card.Text key={key} style={cardTextStyle}>{value}</Card.Text>
+                    if (key === "image") {
+                        return (
+                            <Card.Img key={key} variant="top" src={value} style={cardImgStyle}/>
+                        )
                     } else { null }})}
-                <div style={cardFooterStyle}>
-                    <Indicator 
-                        tutorialData={props.tutorialData} 
-                        step={props.step} forward={props.forward} 
-                        nextStep={props.nextStep} prevStep={props.prevStep}  />
-                    <RenderButtons 
-                        step={props.step} forward={props.forward} 
-                        nextStep={props.nextStep} prevStep={props.prevStep} 
-                        />
-                </div>
-            </CardBody>
-        </Card>
+                <CardBody>
+                    {Object.entries(currentCardData).map(([key, value]) => {
+                        if (key === "title") {
+                            return <Card.Title key={key} style={cardTitleStyle}><b>{value}</b></Card.Title>
+                        } else if (key === "description") {
+                            return <Card.Text key={key} style={cardTextStyle}>{value}</Card.Text>
+                        } else { null }})}
+                    <div style={cardFooterStyle}>
+                        <Indicator 
+                            tutorialData={props.tutorialData} 
+                            step={props.step} forward={props.forward} 
+                            nextStep={props.nextStep} prevStep={props.prevStep}  />
+                        <RenderButtons 
+                            tutorialData={props.tutorialData} 
+                            step={props.step} forward={props.forward} 
+                            nextStep={props.nextStep} prevStep={props.prevStep} 
+                            />
+                    </div>
+                </CardBody>
+            </Card>
+        </motion.div>
+        )}
+    </AnimatePresence>
     )
 }
 
