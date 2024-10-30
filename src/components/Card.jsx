@@ -79,12 +79,10 @@ const AppCard = (props) => {
                     <div style={cardFooterStyle}>
                         <Indicator
                             tutorialData={props.tutorialData}
-                            step={props.step} forward={props.forward}
-                            setStep={props.setStep} setStep={props.setStep}
-                            nextStep={props.nextStep} prevStep={props.prevStep} />
+                            step={props.step} setStep={props.setStep} 
+                         />
                         <RenderButtons
                             tutorialData={props.tutorialData} index={props.index}
-                            step={props.step} forward={props.forward}
                             nextStep={props.nextStep} prevStep={props.prevStep}
                         />
                     </div>
