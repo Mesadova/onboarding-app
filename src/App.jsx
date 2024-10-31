@@ -61,9 +61,8 @@ function App() {
     <Container>
       <CardContainer>
         {tutorialData.map((person, index) => {
-          let position = index > step ? "nextCard" : index === step ? 
-          "activeCard" : "prevCard";
-          return <AppCard key={index} name={person.name} index={index} position={position}
+          let position = index > step ? "nextCard" : index === step ? "activeCard" : "prevCard";
+          return <AppCard key={index} index={index} position={position}
                 image={person.image} description={person.description} title={person.title} bgColor={person.bgColor}
                 tutorialData={tutorialData} step={step}
                 nextStep={nextStep} prevStep={prevStep} 

@@ -33,7 +33,6 @@ const CardStyled = styled(Card)`
     `;
 
 const AppCard = (props) => {
-
     const cardImgStyle = {
         backgroundColor: props.bgColor,
         paddingTop: '110px',
@@ -91,4 +90,4 @@ const AppCard = (props) => {
     )
 }
 
-export default AppCard;
+export default AppCard

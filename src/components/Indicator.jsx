@@ -27,7 +27,7 @@ const StepStyle = styled.button`
     background-color: #B0C4DE;
     transition: 0.6s ease;
 
-    &.something {
+    &.current {
         background: #4169E1;
         border-color: #4169E1;
         width: 40px;
@@ -44,7 +44,7 @@ const Indicator = ({tutorialData, step, setStep}) => {
     const renderIndicator = () => {
         return tutorialData.map((element, index) => {
             if (index === step) {
-                return <StepStyle className='something' key={index}  />
+                return <StepStyle className='current' key={index}  />
             } else {
                 return <StepStyle key={index} onClick={() => multipleSteps(index)}  />
             } 

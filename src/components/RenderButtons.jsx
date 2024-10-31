@@ -1,64 +1,73 @@
 import { Button } from "react-bootstrap";
+import styled from "styled-components";
 
-const buttonStyle = {
-    borderRadius: '100px',
-    borderColor: 'white',
-    width: '55px',
-    height: '55px',
-    display: 'flex',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    justifyContent: 'center',
-};
+const ButtonStyled = styled(Button)`
+    border-radius: 100px;
+    border-color: white;
+    color: white;
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    justify-content: center;
+
+    &:hover {
+        color: white;
+        background-color: white;
+        border-color: white;
+    }
+`
 
 const arrowsStyle = {
     fontSize: '55px',
+    backgroundColor: 'white',
 };
 
-const buttonContainerStyle = {
-    display: 'flex',
-    wrap: 'no-wrap',
-    direction: 'rtl',
-    borderColor: 'white',
-    backgroundColor: 'white',
-    gap: '10px',
-};
+const ButtonContainerStyle = styled.div`
+    display: flex;
+    wrap: no-wrap;
+    direction: rtl;
+    border-color: white;
+    background-color: white;
+    gap: 10px;
+`
 
 const RenderButtons = ({ tutorialData, nextStep, prevStep, index }) => {
 
     const renderButtons = () => {
         if (index === 0) {
             return (
-                <div style={buttonContainerStyle}>
-                    <Button onClick={nextStep} style={buttonStyle}>
+                <ButtonContainerStyle>
+                    <ButtonStyled onClick={nextStep}>
                         <i className="bi bi-arrow-right-circle-fill text-dark" style={arrowsStyle}></i>
-                    </Button>
-                </div>
+                    </ButtonStyled>
+                </ButtonContainerStyle>
             )
 
         } else if (index < tutorialData.length - 1) {
             return (
-                <div style={buttonContainerStyle}>
-                    <Button onClick={nextStep} style={buttonStyle}>
+                <ButtonContainerStyle>
+                    <ButtonStyled onClick={nextStep}>
                         <i className="bi bi-arrow-right-circle-fill text-dark" style={arrowsStyle}></i>
-                    </Button>
-                    <Button onClick={prevStep} style={buttonStyle}>
+                    </ButtonStyled>
+                    <ButtonStyled onClick={prevStep}>
                         <i className="bi bi-arrow-left-circle text-dark" style={arrowsStyle}></i>
-                    </Button>
-                </div>
+                    </ButtonStyled>
+                </ButtonContainerStyle>
             )
         } else {
             return (
-                <div style={buttonContainerStyle}>
-                    <Button onClick={prevStep} style={buttonStyle}>
+                <ButtonContainerStyle>
+                    <ButtonStyled onClick={prevStep}>
                         <i className="bi bi-arrow-left-circle text-dark" style={arrowsStyle}></i>
-                    </Button>
-                </div>
+                    </ButtonStyled>
+                </ButtonContainerStyle>
             )
         }
     }
 
-    return <div>{renderButtons()}</div>;
+    return <>{renderButtons()}</>;
 }
 
 export default RenderButtons;
