@@ -41,7 +41,7 @@ npm install
 
 ### ✔️ - Running the project
 
-1. Development Server with Vite:** 
+1. **Development Server with Vite:** 
 
     Start the Vite development server by running:
 
